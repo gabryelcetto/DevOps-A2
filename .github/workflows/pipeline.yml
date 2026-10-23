@@ -1,0 +1,29 @@
+name: Pipeline de CI/CD
+
+on: [push] #inicia o projeto
+
+jobs:
+  preparacao:
+    name: Job 1 - preparacao
+    runs-on: ubunto-latest
+    steps:
+      - name: Inicio
+        run: echo "Pipeline iniciado"
+  
+  teste: 
+    name: Job 2 - teste
+    runs-on: ubunto-latest
+    needs: preparacao
+    steps:
+      - name: Simular Testes
+        run: 
+          echo "Executando Testes..."
+          echo "Testes concluidos com sucesso!"
+
+  finalizacao:
+    name: Job 3 - finalizacao
+    runs-on: ubunto-latest
+    needs: teste
+    steps:
+      - name: fim
+        run: echo "Pipeline finalizado com sucesso!"
